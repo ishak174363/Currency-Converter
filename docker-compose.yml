@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: currency_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=currency_converter
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: currency_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=django-insecure-dev-key-change-in-production
+      - DB_NAME=currency_converter
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres123
+      - DB_HOST=db
+      - DB_PORT=5432
+      - EXCHANGE_RATE_API_KEY=
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

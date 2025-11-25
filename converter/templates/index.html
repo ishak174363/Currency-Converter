@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter - Convert Any Currency Instantly</title>
+    <meta name="description" content="Free online currency converter. Convert between 150+ currencies with real-time exchange rates.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Currency Converter
+                    </h1>
+                </div>
+                <div class="text-sm text-gray-500">
+                    Real-time Exchange Rates
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Converter Card -->
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            
+            <!-- Card Header -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-6">
+                <h2 class="text-2xl font-semibold text-white">Convert Currency</h2>
+                <p class="text-blue-100 mt-1">Enter amount and select currencies to convert</p>
+            </div>
+            
+            <!-- Card Body -->
+            <div class="p-8">
+                
+                <!-- Amount Input -->
+                <div class="mb-6">
+                    <label for="amount" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Amount
+                    </label>
+                    <div class="relative">
+                        <input 
+                            type="number" 
+                            id="amount" 
+                            placeholder="Enter amount" 
+                            value="100"
+                            min="0"
+                            step="0.01"
+                            class="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all"
+                            aria-label="Amount to convert"
+                        >
+                    </div>
+                </div>
+
+                <!-- Currency Selection Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    
+                    <!-- From Currency -->
+                    <div>
+                        <label for="fromCurrency" class="block text-sm font-semibold text-gray-700 mb-2">
+                            From
+                        </label>
+                        <select 
+                            id="fromCurrency" 
+                            class="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all bg-white cursor-pointer"
+                            aria-label="From currency"
+                        >
+                            <option value="">Select currency...</option>
+                        </select>
+                    </div>
+
+                    <!-- To Currency -->
+                    <div>
+                        <label for="toCurrency" class="block text-sm font-semibold text-gray-700 mb-2">
+                            To
+                        </label>
+                        <select 
+                            id="toCurrency" 
+                            class="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all bg-white cursor-pointer"
+                            aria-label="To currency"
+                        >
+                            <option value="">Select currency...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Swap Button -->
+                <div class="flex justify-center -mt-3 mb-6">
+                    <button 
+                        id="swapBtn" 
+                        class="bg-white border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 rounded-full p-3 transition-all transform hover:scale-110 shadow-md"
+                        aria-label="Swap currencies"
+                        title="Swap currencies"
+                    >
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Convert Button -->
+                <button 
+                    id="convertBtn" 
+                    class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                    <span id="convertBtnText">Convert Currency</span>
+                    <span id="convertBtnLoading" class="hidden">
+                        <svg class="animate-spin inline-block w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Converting...
+                    </span>
+                </button>
+
+                <!-- Result Display -->
+                <div id="result" class="mt-8 hidden">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <h3 class="text-lg font-semibold text-gray-800">Conversion Result</h3>
+                                </div>
+                                <div class="space-y-2">
+                                    <p class="text-3xl font-bold text-gray-900" id="resultAmount">
+                                        <!-- Result will be inserted here -->
+                                    </p>
+                                    <p class="text-sm text-gray-600" id="resultRate">
+                                        <!-- Exchange rate will be inserted here -->
+                                    </p>
+                                    <p class="text-xs text-gray-500" id="resultTimestamp">
+                                        <!-- Timestamp will be inserted here -->
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Display -->
+                <div id="error" class="mt-8 hidden">
+                    <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="text-lg font-semibold text-red-800 mb-1">Error</h3>
+                                <p class="text-red-700" id="errorMessage">
+                                    <!-- Error message will be inserted here -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Real-Time Rates</h3>
+                <p class="text-sm text-gray-600">Get the latest exchange rates updated every 24 hours</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">150+ Currencies</h3>
+                <p class="text-sm text-gray-600">Support for all major world currencies and more</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Secure & Free</h3>
+                <p class="text-sm text-gray-600">100% free to use with secure API connections</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
+        <div class="text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Currency Converter. Exchange rates provided by ExchangeRate-API.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    {% load static %}
+    <script src="{% static 'js/app.js' %}"></script>
+
+</body>
+</html>
