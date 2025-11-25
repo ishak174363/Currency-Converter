@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>150+ Currencies - Currency Converter</title>
+    <meta name="description" content="Learn about the world's major currencies supported by our converter">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    
+    <!-- Navigation Bar -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Page Header -->
+        <div class="mb-12">
+            <div class="flex items-center space-x-4 mb-4">
+                <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0110.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900">150+ Currencies Supported</h2>
+                    <p class="text-gray-600 mt-2">Access all major and minor world currencies</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Cards -->
+        <div class="space-y-8">
+            
+            <!-- Overview -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Comprehensive Currency Coverage</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Our currency converter supports over 150 world currencies, covering virtually every country's official currency. This extensive coverage ensures you can convert between any major currencies you might encounter in international business, travel, or investment activities.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    From major world currencies like USD, EUR, and GBP to emerging market currencies and smaller nations, we've got comprehensive coverage of the global financial ecosystem.
+                </p>
+            </div>
+
+            <!-- Major Currency Groups -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Currency Categories</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="border-2 border-blue-200 rounded-lg p-6 bg-blue-50">
+                        <h4 class="font-semibold text-gray-900 mb-3">🌍 Major Currencies</h4>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• USD - US Dollar</li>
+                            <li>• EUR - Euro</li>
+                            <li>• GBP - British Pound</li>
+                            <li>• JPY - Japanese Yen</li>
+                            <li>• CHF - Swiss Franc</li>
+                            <li>• CAD - Canadian Dollar</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-2 border-purple-200 rounded-lg p-6 bg-purple-50">
+                        <h4 class="font-semibold text-gray-900 mb-3">📈 Asian Currencies</h4>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• CNY - Chinese Yuan</li>
+                            <li>• INR - Indian Rupee</li>
+                            <li>• SGD - Singapore Dollar</li>
+                            <li>• HKD - Hong Kong Dollar</li>
+                            <li>• THB - Thai Baht</li>
+                            <li>• MYR - Malaysian Ringgit</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-2 border-green-200 rounded-lg p-6 bg-green-50">
+                        <h4 class="font-semibold text-gray-900 mb-3">🌏 Pacific Currencies</h4>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• AUD - Australian Dollar</li>
+                            <li>• NZD - New Zealand Dollar</li>
+                            <li>• KRW - South Korean Won</li>
+                            <li>• TWD - Taiwan Dollar</li>
+                            <li>• PHP - Philippine Peso</li>
+                            <li>• IDR - Indonesian Rupiah</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-2 border-orange-200 rounded-lg p-6 bg-orange-50">
+                        <h4 class="font-semibold text-gray-900 mb-3">🌐 Emerging Markets</h4>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• BRL - Brazilian Real</li>
+                            <li>• RUB - Russian Ruble</li>
+                            <li>• MXN - Mexican Peso</li>
+                            <li>• ZAR - South African Rand</li>
+                            <li>• TRY - Turkish Lira</li>
+                            <li>• AED - UAE Dirham</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Why Multiple Currencies -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Why Support 150+ Currencies?</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-purple-500 text-white">✓</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Global Accessibility</h4>
+                            <p class="text-gray-600 mt-1">Whether you're in a major developed economy or a smaller nation, you can access your currency conversion needs.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-purple-500 text-white">✓</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">International Business</h4>
+                            <p class="text-gray-600 mt-1">Professionals dealing with multi-currency transactions can find all the currencies they need in one place.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-purple-500 text-white">✓</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Travel Planning</h4>
+                            <p class="text-gray-600 mt-1">Get accurate conversions for any country you're visiting, no matter how remote or economically developed.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-purple-500 text-white">✓</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Investment Opportunities</h4>
+                            <p class="text-gray-600 mt-1">Monitor and track performance of various world currencies for investment and portfolio management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supported Regions -->
+            <div class="bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl shadow-md p-8 text-white">
+                <h3 class="text-2xl font-semibold mb-4">Global Coverage by Region</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2">Europe & Central Asia</h4>
+                        <p class="text-purple-100">EUR, GBP, CHF, NOK, SEK, DKK, PLN, CZK, HUF, RUB, and more</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Americas</h4>
+                        <p class="text-purple-100">USD, CAD, MXN, BRL, ARS, COP, CLP, PEN, and more</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Asia Pacific</h4>
+                        <p class="text-purple-100">CNY, JPY, INR, KRW, SGD, THB, IDR, PHP, AUD, NZD, and more</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Africa & Middle East</h4>
+                        <p class="text-purple-100">ZAR, EGP, NGN, SAR, AED, IQD, TND, and more</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Easy Access -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Easy Currency Access</h3>
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                    <p class="text-gray-700 mb-4">
+                        All 150+ currencies are available through our converter with a simple dropdown selection. You can:
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start gap-3">
+                            <span class="text-purple-600 font-bold">→</span>
+                            <span>Quickly find any currency by typing its code or name</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-purple-600 font-bold">→</span>
+                            <span>View all available currencies and their exchange rates</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-purple-600 font-bold">→</span>
+                            <span>Convert between any two currencies instantly</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-purple-600 font-bold">→</span>
+                            <span>See historical trends and rate movements</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Info Cards Navigation -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-200">
+            
+            <a href="/info/real-time-rates/" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg hover:border-blue-300 transition-all transform hover:-translate-y-1 block">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Real-Time Rates</h3>
+                <p class="text-sm text-gray-600">Get the latest exchange rates updated every 24 hours</p>
+            </a>
+
+            <a href="/info/currencies/" class="bg-white rounded-xl shadow-md border border-purple-300 p-6 hover:shadow-lg hover:border-purple-500 transition-all transform hover:-translate-y-1 block bg-purple-50">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">150+ Currencies</h3>
+                <p class="text-sm text-gray-600">Support for all major world currencies and more</p>
+            </a>
+
+            <a href="/info/secure-free/" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg hover:border-green-300 transition-all transform hover:-translate-y-1 block">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Secure & Free</h3>
+                <p class="text-sm text-gray-600">100% free to use with secure API connections</p>
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
+        <div class="text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Currency Converter. Exchange rates provided by ExchangeRate-API.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

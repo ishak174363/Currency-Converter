@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Rates - Currency Converter</title>
+    <meta name="description" content="Learn about real-time exchange rates and how they work">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    
+    <!-- Navigation Bar -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Page Header -->
+        <div class="mb-12">
+            <div class="flex items-center space-x-4 mb-4">
+                <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900">Real-Time Exchange Rates</h2>
+                    <p class="text-gray-600 mt-2">Understanding live currency conversion</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Cards -->
+        <div class="space-y-8">
+            
+            <!-- What are Real-Time Rates -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">What Are Real-Time Rates?</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Real-time exchange rates are the current prices at which one currency can be exchanged for another. These rates fluctuate continuously throughout the trading day based on supply and demand in the foreign exchange market (Forex). A real-time rate typically reflects prices updated every few seconds to minutes, providing the most accurate conversion information available.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Our system updates exchange rates every 24 hours from reliable APIs, ensuring you have the most current information for your currency conversions. This frequent updating means you can trust the rates displayed for accurate financial transactions and comparisons.
+                </p>
+            </div>
+
+            <!-- How They Work -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">How Exchange Rates Work</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-blue-500 text-white">1</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Market Forces</h4>
+                            <p class="text-gray-600 mt-1">Exchange rates are determined by global supply and demand. When more people want a currency, its value increases.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-blue-500 text-white">2</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Economic Factors</h4>
+                            <p class="text-gray-600 mt-1">Interest rates, inflation, economic growth, and political stability all influence currency values.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-md bg-blue-500 text-white">3</div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Continuous Updates</h4>
+                            <p class="text-gray-600 mt-1">Rates change constantly as new information enters the market and traders adjust their positions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Real-Time Matters -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Why Real-Time Rates Matter</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span><strong>Accurate Conversions:</strong> Get the most precise conversion amounts for your currency transactions.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span><strong>Smart Decision Making:</strong> Monitor rate fluctuations to make informed decisions about international transfers or investments.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span><strong>Transparency:</strong> Know exactly what rates are being used for your conversions, with no hidden fees or outdated information.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Key Factors -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-md p-8 text-white">
+                <h3 class="text-2xl font-semibold mb-4">Factors That Influence Exchange Rates</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2">Economic Indicators</h4>
+                        <p class="text-blue-100">GDP growth, unemployment, inflation rates, and trade balances</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Interest Rates</h4>
+                        <p class="text-blue-100">Central bank policy decisions affect currency attractiveness</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Political Events</h4>
+                        <p class="text-blue-100">Elections, policy changes, and geopolitical tensions</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Market Sentiment</h4>
+                        <p class="text-blue-100">Investor confidence and risk appetite fluctuations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="bg-white rounded-xl shadow-md border border-gray-100 p-8">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Tips for Using Real-Time Rates</h3>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-gray-900">🕐 Check Timing</h4>
+                        <p class="text-gray-700 mt-1">Exchange rates vary throughout the day. Major changes typically occur during market opening hours (Asian, European, and US sessions).</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">📊 Monitor Trends</h4>
+                        <p class="text-gray-700 mt-1">If you're planning a large transaction, monitor rates over a period to identify favorable times.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">🔍 Compare Sources</h4>
+                        <p class="text-gray-700 mt-1">Different financial institutions may have slightly different rates due to spreads. Always compare before important transactions.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Info Cards Navigation -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-200">
+            
+            <a href="/info/real-time-rates/" class="bg-white rounded-xl shadow-md border border-blue-300 p-6 hover:shadow-lg hover:border-blue-500 transition-all transform hover:-translate-y-1 block bg-blue-50">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Real-Time Rates</h3>
+                <p class="text-sm text-gray-600">Get the latest exchange rates updated every 24 hours</p>
+            </a>
+
+            <a href="/info/currencies/" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg hover:border-purple-300 transition-all transform hover:-translate-y-1 block">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">150+ Currencies</h3>
+                <p class="text-sm text-gray-600">Support for all major world currencies and more</p>
+            </a>
+
+            <a href="/info/secure-free/" class="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg hover:border-green-300 transition-all transform hover:-translate-y-1 block">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Secure & Free</h3>
+                <p class="text-sm text-gray-600">100% free to use with secure API connections</p>
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
+        <div class="text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Currency Converter. Exchange rates provided by ExchangeRate-API.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

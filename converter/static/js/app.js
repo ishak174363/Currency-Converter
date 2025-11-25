@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCurrencies();
     setupEventListeners();
 });
-
 // Setup event listeners
 function setupEventListeners() {
     convertBtn.addEventListener('click', handleConvert);
@@ -31,7 +30,8 @@ function setupEventListeners() {
             handleConvert();
         }
     });
-}
+} 
+
 
 // Load available currencies
 async function loadCurrencies() {

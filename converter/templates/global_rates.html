@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Exchange Rates - Currency Converter</title>
+    <meta name="description" content="View all global exchange rates compared to BDT">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    
+    <!-- Navigation Bar -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Page Title -->
+        <div class="mb-8">
+            <h2 class="text-4xl font-bold text-gray-900 mb-2">Global Exchange Rates</h2>
+            <p class="text-gray-600">View exchange rates for any currency compared to other world currencies</p>
+        </div>
+
+        <!-- Base Currency Selector -->
+        <div class="mb-8 bg-white rounded-xl shadow-md border border-gray-100 p-6">
+            <label for="baseCurrencySelect" class="block text-sm font-semibold text-gray-700 mb-3">
+                Select Base Currency
+            </label>
+            <div class="flex gap-4">
+                <select 
+                    id="baseCurrencySelect"
+                    class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all bg-white cursor-pointer text-lg"
+                >
+                    <option value="BDT">BDT - Bangladeshi Taka</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Rates Container -->
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            
+            <!-- Container Header -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white">
+                            Exchange Rates: 1 <span id="headerBaseCurrency">BDT</span> = ?
+                        </h3>
+                        <p class="text-blue-100 mt-1">Updated daily with real-time data</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-blue-100 text-sm">Total Currencies</p>
+                        <p class="text-4xl font-bold text-white" id="currencyCount">
+                            Loading...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="bg-gray-50 px-8 py-4 border-b border-gray-200">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search by currency name or code..." 
+                    class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all"
+                >
+            </div>
+
+            <!-- Table Content -->
+            <div class="overflow-x-auto">
+                <div id="ratesTableContainer" class="p-8">
+                    <!-- Loading state -->
+                    <div class="flex items-center justify-center py-16">
+                        <svg class="animate-spin h-12 w-12 text-blue-600" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span class="ml-4 text-lg text-gray-600">Loading exchange rates...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12">
+        <div class="text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Currency Converter. Exchange rates provided by ExchangeRate-API.</p>
+        </div>
+    </footer>
+
+    <script>
+        let allRates = [];
+        let allCurrencies = [];
+        let currentBaseCurrency = 'BDT';
+
+        // Load rates on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllCurrencies();
+            loadGlobalRates('BDT');
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            const baseCurrencySelect = document.getElementById('baseCurrencySelect');
+            baseCurrencySelect.addEventListener('change', (e) => {
+                currentBaseCurrency = e.target.value;
+                loadGlobalRates(currentBaseCurrency);
+            });
+
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                filterRates(searchTerm);
+            });
+        }
+
+        async function loadAllCurrencies() {
+            try {
+                const response = await fetch('/currencies/');
+                if (response.ok) {
+                    allCurrencies = await response.json();
+                    populateBaseCurrencyDropdown();
+                }
+            } catch (error) {
+                console.error('Error loading currencies:', error);
+            }
+        }
+
+        function populateBaseCurrencyDropdown() {
+            const baseCurrencySelect = document.getElementById('baseCurrencySelect');
+            const currentValue = baseCurrencySelect.value;
+            
+            // Clear existing options except the first few default ones
+            const defaultOptions = Array.from(baseCurrencySelect.options).slice(0, 10);
+            baseCurrencySelect.innerHTML = '';
+            
+            defaultOptions.forEach(option => {
+                baseCurrencySelect.appendChild(option.cloneNode(true));
+            });
+
+            // Add all available currencies
+            allCurrencies.forEach(currency => {
+                const option = document.createElement('option');
+                option.value = currency.code;
+                option.textContent = `${currency.code} - ${currency.name}`;
+                baseCurrencySelect.appendChild(option);
+            });
+
+            // Restore the selected value
+            baseCurrencySelect.value = currentValue;
+        }
+
+        async function loadGlobalRates(baseCurrency) {
+            try {
+                const response = await fetch(`/rates/global/?base=${baseCurrency}`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load global rates');
+                }
+                
+                const data = await response.json();
+                allRates = data.rates;
+                displayGlobalRatesTable(data);
+                
+            } catch (error) {
+                console.error('Error loading global rates:', error);
+                document.getElementById('ratesTableContainer').innerHTML = `
+                    <div class="bg-red-50 border-2 border-red-200 rounded-xl p-8 text-center">
+                        <p class="text-red-700 font-semibold text-lg">Failed to load exchange rates</p>
+                        <p class="text-red-600 text-sm mt-2">${error.message}</p>
+                        <a href="/" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                            Back to Converter
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        function displayGlobalRatesTable(data) {
+            const { base_currency, rates, total_currencies } = data;
+            
+            // Update header
+            document.getElementById('headerBaseCurrency').textContent = base_currency;
+            document.getElementById('currencyCount').textContent = total_currencies;
+            document.getElementById('searchInput').value = '';
+            
+            if (!rates || rates.length === 0) {
+                document.getElementById('ratesTableContainer').innerHTML = `
+                    <div class="text-center py-16 text-gray-600">
+                        <p class="text-lg">No exchange rates available for ${base_currency}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            displayFilteredRates(rates);
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                filterRates(searchTerm);
+            });
+        }
+
+        function filterRates(searchTerm) {
+            if (!searchTerm) {
+                displayFilteredRates(allRates);
+                return;
+            }
+
+            const filtered = allRates.filter(rate => 
+                rate.currency_name.toLowerCase().includes(searchTerm) ||
+                rate.currency_code.toLowerCase().includes(searchTerm)
+            );
+
+            displayFilteredRates(filtered);
+        }
+
+        function displayFilteredRates(rates) {
+            if (!rates || rates.length === 0) {
+                document.getElementById('ratesTableContainer').innerHTML = `
+                    <div class="text-center py-16 text-gray-600">
+                        <p class="text-lg">No currencies found matching your search</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let tableHTML = `
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 border-b-2 border-gray-300">
+                            <th class="px-6 py-4 text-left font-semibold text-gray-700">Currency Name</th>
+                            <th class="px-6 py-4 text-left font-semibold text-gray-700">Code</th>
+                            <th class="px-6 py-4 text-left font-semibold text-gray-700">Symbol</th>
+                            <th class="px-6 py-4 text-right font-semibold text-gray-700">Exchange Rate</th>
+                            <th class="px-6 py-4 text-center font-semibold text-gray-700">Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            rates.forEach((rate, index) => {
+                const rowClass = index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+                const formattedRate = parseFloat(rate.rate).toLocaleString('en-US', {
+                    minimumFractionDigits: 4,
+                    maximumFractionDigits: 6
+                });
+                const updatedTime = new Date(rate.last_updated).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                tableHTML += `
+                    <tr class="${rowClass} border-b border-gray-200 hover:bg-blue-50 transition-colors">
+                        <td class="px-6 py-4 text-gray-900 font-medium">${rate.currency_name}</td>
+                        <td class="px-6 py-4 text-gray-700 font-semibold">${rate.currency_code}</td>
+                        <td class="px-6 py-4 text-gray-700">${rate.symbol || rate.currency_code}</td>
+                        <td class="px-6 py-4 text-right text-gray-900 font-semibold">${formattedRate}</td>
+                        <td class="px-6 py-4 text-center text-sm text-gray-600">${updatedTime}</td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            document.getElementById('ratesTableContainer').innerHTML = tableHTML;
+        }
+    </script>
+
+</body>
+</html>
